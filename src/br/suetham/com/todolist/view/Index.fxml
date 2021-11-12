@@ -65,8 +65,8 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="tfnome" layoutX="26.0" layoutY="182.0" prefHeight="25.0" prefWidth="210.0" />
-      <TextArea fx:id="tfsobre" layoutX="26.0" layoutY="306.0" prefHeight="200.0" prefWidth="318.0" />
+      <TextField fx:id="tfNome" layoutX="26.0" layoutY="182.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextArea fx:id="tfsobre" layoutX="26.0" layoutY="306.0" prefHeight="200.0" prefWidth="318.0" wrapText="true" />
       <Label layoutX="27.0" layoutY="158.0" text="Nome:">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -79,20 +79,20 @@
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Button layoutX="43.0" layoutY="513.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="48.0" style="-fx-background-color: #fff;">
+      <Button fx:id="btSalvar" layoutX="43.0" layoutY="513.0" mnemonicParsing="false" onAction="#cllqSalvar" prefHeight="53.0" prefWidth="48.0" style="-fx-background-color: #fff;">
          <tooltip>
             <Tooltip text="Salvar" />
          </tooltip>
          <graphic>
-            <ImageView fx:id="btsalvar" fitHeight="38.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="38.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagens/salvar.png" />
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="96.0" layoutY="518.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="37.0" style="-fx-background-color: #fff;" textFill="TRANSPARENT">
+      <Button fx:id="btExcluir" layoutX="96.0" layoutY="518.0" mnemonicParsing="false" onAction="#cliqExcluir" prefHeight="43.0" prefWidth="37.0" style="-fx-background-color: #fff;" textFill="TRANSPARENT">
          <graphic>
-            <ImageView fx:id="btexcluir" fitHeight="39.0" fitWidth="43.0">
+            <ImageView fitHeight="39.0" fitWidth="43.0">
                <image>
                   <Image url="@../../../../../../../../Downloads/data-limite.png" />
                </image>
@@ -101,9 +101,9 @@
          <tooltip>
             <Tooltip text="Excluir" />
          </tooltip></Button>
-      <Button layoutX="166.0" layoutY="518.0" mnemonicParsing="false" style="-fx-background-color: #fff;">
+      <Button fx:id="btAdiar" layoutX="166.0" layoutY="518.0" mnemonicParsing="false" onAction="#cliqAdiar" style="-fx-background-color: #fff;">
          <graphic>
-            <ImageView fx:id="btadiar" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagens/relogio.png" />
                </image>
@@ -112,29 +112,29 @@
          <tooltip>
             <Tooltip text="Adiar" />
          </tooltip></Button>
-      <Button layoutX="230.0" layoutY="510.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: #fff;">
+      <Button fx:id="btConcluir" layoutX="230.0" layoutY="510.0" mnemonicParsing="false" onAction="#cliqConcluir" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: #fff;">
          <tooltip>
             <Tooltip text="Concluir" />
          </tooltip>
          <graphic>
-            <ImageView fx:id="btconcluir" fitHeight="70.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="70.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagens/concluir.png" />
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="292.0" layoutY="518.0" mnemonicParsing="false" style="-fx-background-color: #fff;">
+      <Button fx:id="btLimpar" layoutX="292.0" layoutY="518.0" mnemonicParsing="false" onAction="#cliqLimpar" style="-fx-background-color: #fff;">
          <tooltip>
             <Tooltip text="Limpar tudo" />
          </tooltip>
          <graphic>
-            <ImageView fx:id="btlimpar" fitHeight="45.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="45.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagens/Limpar.png" />
                </image>
             </ImageView>
          </graphic></Button>
-      <DatePicker layoutX="19.0" layoutY="246.0" prefHeight="25.0" prefWidth="226.0" />
+      <DatePicker fx:id="dpDataRealização" layoutX="19.0" layoutY="246.0" prefHeight="25.0" prefWidth="226.0" />
       <ImageView fx:id="imagvStatus" fitHeight="70.0" fitWidth="85.0" layoutX="279.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="304.0" layoutY="158.0" text="Status">
          <font>
