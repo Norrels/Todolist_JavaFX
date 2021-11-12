@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="589.0" prefWidth="1071.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.suetham.com.todolist.controller.IndexController">
+   <children>
+      <Circle layoutX="19.0" layoutY="363.0" radius="105.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#c16b86" />
+                  <Stop color="#c16b86" offset="0.44061302681992337" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill></Circle>
+      <Circle layoutX="939.0" layoutY="265.0" radius="129.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9428571428571428">
+               <stops>
+                  <Stop color="#f8b195" />
+                  <Stop color="#f8b195" offset="0.29885057471264315" />
+                  <Stop color="#ebc6b9" offset="0.579294545167279" />
+                  <Stop color="#f5e5df" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill></Circle>
+      <Circle layoutX="386.0" layoutY="46.0" radius="100.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9428571428571428">
+               <stops>
+                  <Stop color="#b1a7f2" />
+                  <Stop color="#b1a7f2" offset="0.29885057471264326" />
+                  <Stop color="#d6d0ff" offset="0.579294545167279" />
+                  <Stop color="#e3e0f8" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill></Circle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="515.0" layoutX="411.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" width="575.0" />
+      <ImageView id="imagview" disable="true" fitHeight="131.0" fitWidth="210.0" layoutX="840.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/undraw_Notes_re_pxhw.png" />
+         </image></ImageView>
+      <Label layoutX="119.0" layoutY="30.0" text="Suetham">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="119.0" layoutY="75.0" prefHeight="17.0" prefWidth="150.0" text="Notas - Tarefas - Anotações" />
+      <Label layoutX="26.0" layoutY="111.0" text="Criar uma nova tarefa...">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfnome" layoutX="26.0" layoutY="182.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextArea fx:id="tfsobre" layoutX="26.0" layoutY="306.0" prefHeight="200.0" prefWidth="318.0" />
+      <Label layoutX="27.0" layoutY="158.0" text="Nome:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="26.0" layoutY="221.0" text="Data para realização">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="28.0" layoutY="284.0" text="Sobre:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Button layoutX="43.0" layoutY="513.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="48.0" style="-fx-background-color: #fff;">
+         <tooltip>
+            <Tooltip text="Salvar" />
+         </tooltip>
+         <graphic>
+            <ImageView fx:id="btsalvar" fitHeight="38.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/salvar.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="96.0" layoutY="518.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="37.0" style="-fx-background-color: #fff;" textFill="TRANSPARENT">
+         <graphic>
+            <ImageView fx:id="btexcluir" fitHeight="39.0" fitWidth="43.0">
+               <image>
+                  <Image url="@../../../../../../../../Downloads/data-limite.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip text="Excluir" />
+         </tooltip></Button>
+      <Button layoutX="166.0" layoutY="518.0" mnemonicParsing="false" style="-fx-background-color: #fff;">
+         <graphic>
+            <ImageView fx:id="btadiar" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/relogio.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip text="Adiar" />
+         </tooltip></Button>
+      <Button layoutX="230.0" layoutY="510.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: #fff;">
+         <tooltip>
+            <Tooltip text="Concluir" />
+         </tooltip>
+         <graphic>
+            <ImageView fx:id="btconcluir" fitHeight="70.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/concluir.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="292.0" layoutY="518.0" mnemonicParsing="false" style="-fx-background-color: #fff;">
+         <tooltip>
+            <Tooltip text="Limpar tudo" />
+         </tooltip>
+         <graphic>
+            <ImageView fx:id="btlimpar" fitHeight="45.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/Limpar.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <DatePicker layoutX="19.0" layoutY="246.0" prefHeight="25.0" prefWidth="226.0" />
+      <ImageView fx:id="imagvStatus" fitHeight="70.0" fitWidth="85.0" layoutX="279.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="304.0" layoutY="158.0" text="Status">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
