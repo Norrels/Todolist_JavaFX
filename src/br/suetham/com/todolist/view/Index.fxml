@@ -65,9 +65,9 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="tfNome" layoutX="26.0" layoutY="182.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextField fx:id="tfTitulo" layoutX="26.0" layoutY="182.0" prefHeight="25.0" prefWidth="210.0" />
       <TextArea fx:id="tfsobre" layoutX="26.0" layoutY="306.0" prefHeight="200.0" prefWidth="318.0" wrapText="true" />
-      <Label layoutX="27.0" layoutY="158.0" text="Nome:">
+      <Label layoutX="27.0" layoutY="158.0" text="Titulo">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>

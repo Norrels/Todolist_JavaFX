@@ -1,5 +1,6 @@
 package br.suetham.com.todolist.application;
 	
+import br.suetham.com.todolist.io.TarefaIO;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			TarefaIO.createFiles();
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../view/Index.fxml"));
 			Scene scene = new Scene(root,1071,589);
 			scene.getStylesheets().add(getClass().getResource("../view/application.css").toExternalForm());
