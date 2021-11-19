@@ -1,6 +1,7 @@
 package br.suetham.com.todolist.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Tarefa {
 	private long id;
@@ -53,5 +54,23 @@ public class Tarefa {
 		this.status = status;
 	}
 	
+	public String formatToSave () {
+		//Classe do java que controi uma String que em breve
+		//Sera adicionado no banco de dados 
+		StringBuilder builder = new StringBuilder();
+		//Dois mm minusculos é minutos, MM maiusuculo é més
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		builder.append(this.getId()+";");
+		builder.append(this.getDataCriacao().format(fmt)+";");
+		builder.append(this.getDataLimite().format(fmt)+";");
+		if (this.getDataFinalizada() != null) {
+			builder.append(this.getDataFinalizada().format(fmt));
+		} 
+		builder.append(";");
+		builder.append(this.getTarefaNome()+";");
+		builder.append(this.getComentario()+";");
+		builder.append(this.getStatus().ordinal()+"\n");
+		return builder.toString();
+	}
 	
 }

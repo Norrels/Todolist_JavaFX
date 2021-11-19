@@ -1,5 +1,7 @@
 package br.suetham.com.todolist.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -94,7 +96,7 @@ public class IndexController implements Initializable {
     			JOptionPane.showMessageDialog(null, "Ops essa data já passou informe uma data valida", "Informe", JOptionPane.ERROR_MESSAGE);
         		dpDataRealização.requestFocus();
         		
-    		} else {
+    		} else 
     			//Iniciando a tarefa
     			tarefa = new Tarefa();
     			//populando a tarefa
@@ -103,17 +105,26 @@ public class IndexController implements Initializable {
     			tarefa.setTarefaNome(tfTitulo.getText());
     			tarefa.setComentario(tfsobre.getText());
     			tarefa.setStatus(StatusTarefa.ABERTA);
-//    			Image Open = new Image("file:///C:/Users/TecDevTarde/eclipse-workspace/todolist/src/br/suetham/com/todolist/imagens/caneta.png");
-//    		    imagvStatus.setImage(Open);
+    			//Image Open = new Image("file:///C:/Users/TecDevTarde/eclipse-workspace/todolist/src/br/suetham/com/todolist/imagens/caneta.png");
+    			//imagvStatus.setImage(Open);
     		    	
-    			}
-    			//TODO 	salvar no banco de dados
-    			//Limpar os campos do formulário
+// se voce colocar TODO em comentario ele marca como algo para fazer
     			
-    			limparCampos();
-   
-    		}
+    			//TODO 	salvar no banco de dados
+    			try {
+					TarefaIO.insert(tarefa);
+					//Limpar os campos do formulário
+	    			limparCampos();
+				} catch (FileNotFoundException e) {
+					JOptionPane.showMessageDialog(null, "Arquivo não encontrado"+e.getMessage(),"Erro", JOptionPane.ERROR_MESSAGE);
+					e.printStackTrace();
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, "Erro de I/O"+e.getMessage(),"Erro", JOptionPane.ERROR_MESSAGE);
+					e.printStackTrace();
+				}
+    			
     	}
+    }
     
     private void limparCampos () {
     	tarefa = null;
