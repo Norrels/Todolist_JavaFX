@@ -15,6 +15,8 @@ public class Main extends Application {
 			TarefaIO.createFiles();
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../view/Index.fxml"));
 			Scene scene = new Scene(root,1071,589);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle("Suetham");
 			scene.getStylesheets().add(getClass().getResource("../view/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
