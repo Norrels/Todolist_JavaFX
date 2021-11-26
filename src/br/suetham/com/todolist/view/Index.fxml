@@ -86,9 +86,9 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="btExcluir" layoutX="96.0" layoutY="518.0" mnemonicParsing="false" onAction="#cliqExcluir" prefHeight="43.0" prefWidth="37.0" style="-fx-background-color: #fff;" textFill="TRANSPARENT">
+      <Button fx:id="btExcluir" disable="true" layoutX="96.0" layoutY="518.0" mnemonicParsing="false" onAction="#cliqExcluir" prefHeight="43.0" prefWidth="37.0" style="-fx-background-color: #fff;" textFill="TRANSPARENT">
          <graphic>
-            <ImageView fitHeight="39.0" fitWidth="43.0">
+            <ImageView disable="true" fitHeight="39.0" fitWidth="43.0">
                <image>
                   <Image url="@../../../../../../../../Downloads/data-limite.png" />
                </image>
@@ -97,9 +97,9 @@
          <tooltip>
             <Tooltip text="Excluir" />
          </tooltip></Button>
-      <Button fx:id="btAdiar" layoutX="166.0" layoutY="518.0" mnemonicParsing="false" onAction="#cliqAdiar" style="-fx-background-color: #fff;">
+      <Button fx:id="btAdiar" disable="true" layoutX="166.0" layoutY="518.0" mnemonicParsing="false" onAction="#cliqAdiar" style="-fx-background-color: #fff;">
          <graphic>
-            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagens/relogio.png" />
                </image>
@@ -108,12 +108,12 @@
          <tooltip>
             <Tooltip text="Adiar" />
          </tooltip></Button>
-      <Button fx:id="btConcluir" layoutX="230.0" layoutY="510.0" mnemonicParsing="false" onAction="#cliqConcluir" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: #fff;">
+      <Button fx:id="btConcluir" disable="true" layoutX="230.0" layoutY="510.0" mnemonicParsing="false" onAction="#cliqConcluir" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: #fff;">
          <tooltip>
             <Tooltip text="Concluir" />
          </tooltip>
          <graphic>
-            <ImageView fitHeight="70.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="70.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagens/concluir.png" />
                </image>
@@ -132,7 +132,7 @@
          </graphic></Button>
       <DatePicker fx:id="dpDataRealização" layoutX="19.0" layoutY="246.0" prefHeight="25.0" prefWidth="226.0" />
       <ImageView fx:id="imagvStatus" fitHeight="70.0" fitWidth="85.0" layoutX="279.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="304.0" layoutY="158.0" text="Status">
+      <Label fx:id="lbStatus" layoutX="304.0" layoutY="158.0" text="Status">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
