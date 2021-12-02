@@ -56,7 +56,7 @@
          </font>
       </Label>
       <Label layoutX="119.0" layoutY="75.0" prefHeight="17.0" prefWidth="150.0" text="Notas - Tarefas - Anotações" />
-      <Label layoutX="26.0" layoutY="111.0" text="Criar uma nova tarefa...">
+      <Label layoutX="26.0" layoutY="111.0" text="Crier uma nova tarefa...">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -67,7 +67,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Label layoutX="26.0" layoutY="221.0" text="Data para realização">
+      <Label fx:id="lbData" layoutX="26.0" layoutY="221.0" text="Data para realização">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
@@ -130,9 +130,9 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <DatePicker fx:id="dpDataRealização" layoutX="19.0" layoutY="246.0" prefHeight="25.0" prefWidth="226.0" />
-      <ImageView fx:id="imagvStatus" fitHeight="70.0" fitWidth="85.0" layoutX="279.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lbStatus" layoutX="304.0" layoutY="158.0" text="Status">
+      <DatePicker fx:id="dpDataRealização" layoutX="19.0" layoutY="246.0" prefHeight="25.0" prefWidth="132.0" />
+      <ImageView fx:id="imagvStatus" fitHeight="70.0" fitWidth="85.0" layoutX="280.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lbStatus" alignment="CENTER" layoutX="272.0" layoutY="150.0" prefHeight="17.0" prefWidth="94.0" textAlignment="JUSTIFY">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -144,10 +144,11 @@
             <TableColumn fx:id="TcStatus" prefWidth="125.0" text="Status" />
         </columns>
       </TableView>
-      <ImageView id="imagview" disable="true" fitHeight="118.0" fitWidth="192.0" layoutX="805.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../imagens/undraw_Notes_re_pxhw.png" />
-         </image>
-      </ImageView>
+      <Label fx:id="lbcodigo" layoutX="195.0" layoutY="221.0" text="Código" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="TfId" editable="false" layoutX="189.0" layoutY="246.0" prefHeight="25.0" prefWidth="62.0" visible="false" />
    </children>
 </AnchorPane>

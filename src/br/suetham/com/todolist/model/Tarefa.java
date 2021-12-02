@@ -11,6 +11,7 @@ public class Tarefa {
 	private String tarefaNome;
 	private String comentario;
 	private StatusTarefa status;
+	
 	public long getId() {
 		return id;
 	}

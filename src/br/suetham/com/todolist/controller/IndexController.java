@@ -75,16 +75,57 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
     private TableColumn<Tarefa, String> TcStatus;
     
 	 @FXML
-	    private Label lbStatus;
+	 private Label lbStatus;
+	 
+
+	 @FXML
+	 private Label lbData;
+	 
+	 @FXML
+	 private TextField TfId;
+	    
+	@FXML
+	private Label lbcodigo;
     
     @FXML
     void cliqAdiar(ActionEvent event) {
-    
+    if(tarefa != null) {
+    	int dias = Integer.parseInt(
+    	JOptionPane.showInputDialog(null, "Quantos dias você deseja adiar?","Informe quantos dias",JOptionPane.QUESTION_MESSAGE));
+    	
+    	if(dias > 1) {
+	    	LocalDate novaData = tarefa.getDataLimite().plusDays(dias);
+	    	tarefa.setDataLimite(novaData);
+	    	tarefa.setStatus(StatusTarefa.ADIADA);
+	    	try {
+				TarefaIO.AtualizaTarefas(tarefas);
+				DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				JOptionPane.showMessageDialog(null, "Tarefa adiada para " + tarefa.getDataLimite().format(fmt) + " com sucesso");
+				carregarTarefas();
+				limparCampos();
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null,"Ocorreu um erro ao atualizar a tarefa", "Erro",JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+		}
+    	} else {
+    		JOptionPane.showMessageDialog(null, "Informe um numero maior que 1 ou verifique se a tarefa já está atrasada");
+    	}
+    }
     }
 
     @FXML
     void cliqConcluir(ActionEvent event) {
-    	
+    	tarefa.setStatus(StatusTarefa.CONCLUIDA);
+    	tarefa.setDataFinalizada(LocalDate.now());
+    	try {
+			TarefaIO.AtualizaTarefas(tarefas);
+			JOptionPane.showMessageDialog(null, "Tarefa conluida com sucesso, Parabéns");
+			carregarTarefas();
+			limparCampos();
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null,"Ocorreu um erro ao concluir a tarefa", "Erro",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
     }
 
     @FXML
@@ -99,6 +140,8 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
     	btAdiar.setDisable(true);
 		btExcluir.setDisable(true);
 		btConcluir.setDisable(true);
+		TfId.setVisible(false);
+		lbcodigo.setVisible(false);
     }
     
     private List<Tarefa> tarefas;
@@ -115,8 +158,8 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
     	} else if(tfsobre.getText().isEmpty()) {
     		JOptionPane.showMessageDialog(null, "Informe sobre a tarefa", "Informe", JOptionPane.ERROR_MESSAGE);
     		tfsobre.requestFocus();
-    	} else if(tfTitulo.getText().length() >=20) {
-    		JOptionPane.showMessageDialog(null, "O titulo da tarefá deve ser menor que vinte caracteres", "Informe", JOptionPane.ERROR_MESSAGE);
+    	} else if(tfTitulo.getText().length() >=30) {
+    		JOptionPane.showMessageDialog(null, "O titulo da tarefá deve ser menor que trinta caracteres", "Informe", JOptionPane.ERROR_MESSAGE);
     		tfsobre.requestFocus();
     	} else {
     		if(dpDataRealização.getValue().isBefore(LocalDate.now())) {
@@ -159,6 +202,8 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
     	dpDataRealização.setValue(null);
     	imagvStatus.setImage(null);
     	TvTarefa.getSelectionModel().clearSelection();
+    	TfId.setText(null);
+    	lbData.setText("Data para realização");
     }
 
 	@Override
@@ -223,30 +268,49 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 		tarefa = newValue;
 		//se houver uma tarefa selecionada
 		if(tarefa != null) {
+			TfId.setVisible(true);
+			lbcodigo.setVisible(true);
 			tfTitulo.setText(tarefa.getTarefaNome());
 			tfsobre.setText(tarefa.getComentario());
 			dpDataRealização.setValue(tarefa.getDataLimite());
-			if(tarefa.getStatus() == StatusTarefa.ABERTA) {
-				lbStatus.setText("Aberta");
-				lbStatus.setVisible(true);
-				Image Open = new Image("file:///C:/Users/TecDevTarde/eclipse-workspace/todolist/src/br/suetham/com/todolist/imagens/caneta.png");
-    			imagvStatus.setImage(Open);
-			} else if (tarefa.getStatus() == StatusTarefa.ADIADA) {
-				lbStatus.setText("Adiada");
-				lbStatus.setVisible(true);
-    			Image adiada = new Image("file:///C:/Users/TecDevTarde/eclipse-workspace/todolist/src/br/suetham/com/todolist/imagens/projeto.png");
-    	    	imagvStatus.setImage(adiada);
-    		} else if (tarefa.getStatus() == StatusTarefa.CONCLUIDA) {
-    			lbStatus.setText("Concluida");
+			TfId.setText(tarefa.getId()+"");
+			dpDataRealização.setOpacity(1);
+			
+			if (tarefa.getStatus() == StatusTarefa.CONCLUIDA) {
+    			lbData.setText("Data de conclusão");
+    			lbStatus.setText("Concluída");
     			lbStatus.setVisible(true);
-    			Image finished = new Image("file:///C:/Users/TecDevTarde/eclipse-workspace/todolist/src/br/suetham/com/todolist/imagens/carraca.png");
+    			tfTitulo.setEditable(false);
+    			tfsobre.setEditable(false);
+    			btAdiar.setDisable(true);
+    			btSalvar.setDisable(true);
+    			btConcluir.setDisable(true);
+    			dpDataRealização.setValue(tarefa.getDataFinalizada());
+    			Image finished = new Image(getClass().getResourceAsStream("../imagens/carraca.png"));
     	    	imagvStatus.setImage(finished);
-			}
+
+			} else {
+				lbStatus.setVisible(true);
+				btAdiar.setDisable(false);
+				btExcluir.setDisable(false);
+				btConcluir.setDisable(false);
+				btSalvar.setDisable(false);
+				lbData.setText("Data para realização");
+			
+			}if(tarefa.getStatus() == StatusTarefa.ABERTA) {
+				lbStatus.setText("Aberta");
+				Image Open = new Image(getClass().getResourceAsStream("../imagens/caneta.png"));
+    			imagvStatus.setImage(Open);
+    			
+			}if (tarefa.getStatus() == StatusTarefa.ADIADA) {
+				lbStatus.setText("Adiada");
+    			Image adiada = new Image(getClass().getResourceAsStream("../imagens/projeto.png"));
+    	    	imagvStatus.setImage(adiada);
+    		} 
 			dpDataRealização.setDisable(true);
-			btAdiar.setDisable(false);
-			btExcluir.setDisable(false);
-			btConcluir.setDisable(false);
+			
 		}
+	
 	}
 }
 
