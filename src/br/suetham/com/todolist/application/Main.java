@@ -4,6 +4,7 @@ import br.suetham.com.todolist.io.TarefaIO;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
@@ -15,10 +16,11 @@ public class Main extends Application {
 			TarefaIO.createFiles();
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../view/Index.fxml"));
 			Scene scene = new Scene(root,1071,589);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("Suetham");
 			scene.getStylesheets().add(getClass().getResource("../view/application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Suetham");
+			primaryStage.setResizable(false);
+			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../imagens/caderno.png")));
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
