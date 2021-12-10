@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="380.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.suetham.com.todolist.controller.ResumoController">
+   <children>
+      <Label layoutX="357.0" layoutY="27.0" prefHeight="81.0" prefWidth="131.0" text="Resumo">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="344.0" layoutY="91.0" prefHeight="17.0" prefWidth="137.0" text="Aqui estão seus resumos" />
+      <Circle layoutX="63.0" layoutY="56.0" radius="100.0" stroke="WHITE" strokeType="INSIDE">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#d9718c" />
+                  <Stop color="#ee8aa5" offset="0.44523442745980946" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Circle>
+      <Arc layoutX="256.0" layoutY="383.0" length="180.0" radiusX="105.0" radiusY="93.0" stroke="WHITE" strokeMiterLimit="0.0" strokeType="INSIDE" type="ROUND">
+         <fill>
+            <LinearGradient endX="1.0" endY="0.819047619047619" startX="0.719047619047619" startY="0.11428571428571428">
+               <stops>
+                  <Stop color="#cad2ff" />
+                  <Stop color="#e0e2f2" offset="0.4282102934786901" />
+                  <Stop color="#e8e8e8" offset="0.6326973970059643" />
+                  <Stop color="#e8e8e8" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Arc>
+      <Circle layoutX="714.0" layoutY="116.0" radius="111.0" rotate="90.0" stroke="WHITE" strokeType="INSIDE">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#96d2d9" />
+                  <Stop color="#96d2d9" offset="0.4054982817869416" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Circle>
+      <Label layoutX="65.0" layoutY="166.0" text="Estamos quase lá">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="198.0" text="ABERTAS">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="infoAbertas" editable="false" layoutX="61.0" layoutY="243.0" prefHeight="38.0" prefWidth="113.0" />
+      <Label layoutX="256.0" layoutY="166.0" text="Nunca duvidamos" />
+      <Label layoutX="439.0" layoutY="159.0" prefHeight="31.0" prefWidth="137.0" text="Não é atraso é suspense...">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="infoConcluidas" editable="false" layoutX="247.0" layoutY="243.0" prefHeight="38.0" prefWidth="113.0" />
+      <TextArea fx:id="infoAtrasadas" editable="false" layoutX="451.0" layoutY="243.0" prefHeight="38.0" prefWidth="113.0" />
+      <TextArea fx:id="infoAdiadas" editable="false" layoutX="647.0" layoutY="243.0" prefHeight="38.0" prefWidth="113.0" />
+      <Label layoutX="647.0" layoutY="151.0" prefHeight="47.0" prefWidth="113.0" text="Adiar não é desistir, You can do it" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="677.0" layoutY="198.0" text="ADIADAS">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="472.0" layoutY="197.0" text="ATRASADAS">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="266.0" layoutY="197.0" text="CONCLUIDAS">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

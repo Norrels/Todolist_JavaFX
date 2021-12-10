@@ -97,4 +97,37 @@ public class TarefaIO {
 		}
 		writer.close();
 	}
+	
+	public static void exportHtml(List<Tarefa> lista, File arquivo) throws IOException {
+		FileWriter writer = new FileWriter(arquivo);
+		writer.append("<!DOCTYPE html>\n");
+		writer.append("<html>\n");
+		writer.append("<style>\n");
+		writer.append(".container{");
+		writer.append  ("   background-color:  #d6d0ff;");
+		writer.append  ("   width: 80%;\n");
+		writer.append ("    margin: auto;\n");
+		writer.append  ("   box-sizing: border-box;\n");
+		writer.append ("   height: auto;\n");
+         
+         
+		writer.append (" body{\n");
+				writer.append ("      margin: auto;\n");
+						writer.append ("     text-align: center;\n");
+								writer.append ("    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}\n");
+
+								writer.append("</style>\n");
+		
+		writer.append("<h1>Lista de Tarefas</h1>\n");
+		writer.append("<ul>\n");
+		for(Tarefa tarefa : lista) {
+			writer.append("<li>\n");
+			writer.append(tarefa.getTarefaNome() + "-" + tarefa.getDataLimite());
+			writer.append("</li>\n");
+		}
+		writer.append("<ul>	\n");
+		writer.append("</body>\n");
+		writer.append("</html>\n");
+		writer.close();
+	}
 }

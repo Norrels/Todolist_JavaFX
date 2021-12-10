@@ -55,6 +55,7 @@ public class Tarefa implements Comparable<Tarefa>{
 		this.status = status;
 	}
 	
+	
 	public String formatToSave () {
 		//Classe do java que controi uma String que em breve
 		//Sera adicionado no banco de dados 

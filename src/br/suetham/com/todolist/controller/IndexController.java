@@ -1,5 +1,9 @@
 package br.suetham.com.todolist.controller;
 
+
+
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -7,16 +11,22 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import br.suetham.com.todolist.io.TarefaIO;
 import br.suetham.com.todolist.model.StatusTarefa;
 import br.suetham.com.todolist.model.Tarefa;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -28,10 +38,16 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.scene.image.Image;
 
 public class IndexController implements Initializable, ChangeListener<Tarefa> {
+	@FXML
+	private AnchorPane painelPrincipal;
 
 	private Tarefa tarefa;
 
@@ -85,9 +101,73 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 
 	@FXML
 	private Label lbcodigo;
+	
+	@FXML
+	void btResumo() {
+		 try {
+			 AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/br/suetham/com/todolist/view/Resumo.fxml"));
+			 Scene scene = new Scene(root, 825, 380);
+			 Stage stage = new Stage();
+			 stage.setScene(scene);
+			 stage.setTitle("Sobre");
+			 //TIRANDO A BORDA DA JANELA
+			 stage.initStyle(StageStyle.UNDECORATED);
+			 painelPrincipal.setOpacity(0.1);
+			 stage.initModality(Modality.APPLICATION_MODAL);
+			 stage.showAndWait();
+			 painelPrincipal.setOpacity(1);
+		 }catch(Exception e) {
+			 e.printStackTrace();
+		 }
+	    }
+	
+	 @FXML
+	    void btAbout() {
+		 try {
+			 AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/br/suetham/com/todolist/view/AbaSobre.fxml"));
+			 Scene scene = new Scene(root, 418, 477);
+			 Stage stage = new Stage();
+			 stage.setScene(scene);
+			 stage.setTitle("Sobre");
+			 //TIRANDO A BORDA DA JANELA
+			 stage.initStyle(StageStyle.UNDECORATED);
+			 painelPrincipal.setOpacity(0.1);
+			 stage.initModality(Modality.APPLICATION_MODAL);
+			 stage.showAndWait();
+			 painelPrincipal.setOpacity(1);
+		 }catch(Exception e) {
+			 e.printStackTrace();
+		 }
+	    }
+
+	    @FXML
+	    void  btExport() {
+	    	FileFilter filter = new FileNameExtensionFilter("Arquivo HTML", "html");
+	    	JFileChooser chooser = new JFileChooser();
+	    	chooser.setFileFilter(filter);
+	    	if(chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+	        		File arqSelecionado = chooser.getSelectedFile();
+	        	arqSelecionado = new File(arqSelecionado+".html");
+	        	try {
+	        		TarefaIO.exportHtml(tarefas, arqSelecionado);
+	        	} catch (IOException e) {
+	        		JOptionPane.showMessageDialog(null, "Ocorreu um erro ao gerar o HTMl");
+	        	}
+	        	
+	    	}
+	    }
+	  
+	    @FXML
+	    void btSair() {
+	    	int answer = JOptionPane.showConfirmDialog(null, "Deseja realmente sair");
+	    	if(answer == 0) {
+	    		System.exit(0);
+	    	} 
+	    	
+	    }
 
 	@FXML
-	void cliqAdiar(ActionEvent event) {
+	void cliqAdiar() {
 		if (tarefa != null) {
 			int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantos dias você deseja adiar?",
 					"Informe quantos dias", JOptionPane.QUESTION_MESSAGE));
@@ -116,7 +196,7 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 	}
 
 	@FXML
-	void cliqConcluir(ActionEvent event) {
+	void cliqConcluir() {
 		try {
 			tarefa.setStatus(StatusTarefa.CONCLUIDA);
 			tarefa.setDataFinalizada(LocalDate.now());
@@ -132,7 +212,7 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 	}
 
 	@FXML
-	void cliqExcluir(ActionEvent event) {
+	void cliqExcluir() {
 		if (tarefa != null) {
 			int resposta = JOptionPane.showConfirmDialog(null,
 					"Deseja realmente excluir a tarefa " + tarefa.getId() + "?", "Confirmar exclusão",
@@ -153,7 +233,7 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 	}
 
 	@FXML
-	void cliqLimpar(ActionEvent event) {
+	void cliqLimpar() {
 		limparCampos();
 		dpDataRealização.setDisable(false);
 		lbStatus.setVisible(false);
@@ -164,7 +244,7 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 	private List<Tarefa> tarefas;
 
 	@FXML
-	void cllqSalvar(ActionEvent event) {
+	void cllqSalvar() {
 		// validação de campos
 		if (dpDataRealização.getValue() == null) {
 			JOptionPane.showMessageDialog(null, "Informe a data de realização", "Informe", JOptionPane.ERROR_MESSAGE);
@@ -223,6 +303,7 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 	}
 
 	private void limparCampos() {
+		contador();
 		tarefa = null;
 		tfTitulo.setText(null);
 		tfsobre.setText(null);
@@ -312,7 +393,16 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 			e.printStackTrace();
 		}
 	}
-
+	private void contador(){
+		int cont = 1;
+		for (Tarefa tarefa : tarefas) {
+			
+			if(tarefa.getStatus() == StatusTarefa.ABERTA) {
+			cont++;
+			}
+		}System.out.println(cont);
+	}
+	
 	// Interface ChangerLister adicionar esse metodo
 	@Override
 	public void changed(ObservableValue<? extends Tarefa> observable, Tarefa oldValue, Tarefa newValue) {
@@ -341,7 +431,7 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 				btConcluir.setDisable(true);
 				btExcluir.setDisable(false);
 				dpDataRealização.setValue(tarefa.getDataFinalizada());
-				Image finished = new Image(getClass().getResourceAsStream("../imagens/carraca.png"));
+				Image finished = new Image(getClass().getResourceAsStream("/br/suetham/com/todolist/imagens/carraca.png"));
 				imagvStatus.setImage(finished);
 
 			} else {
@@ -357,13 +447,13 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 			}
 			if (tarefa.getStatus() == StatusTarefa.ABERTA) {
 				lbStatus.setText("Aberta");
-				Image Open = new Image(getClass().getResourceAsStream("../imagens/caneta.png"));
+				Image Open = new Image(getClass().getResourceAsStream("/br/suetham/com/todolist/imagens/caneta.png"));
 				imagvStatus.setImage(Open);
 
 			}
 			if (tarefa.getStatus() == StatusTarefa.ADIADA) {
 				lbStatus.setText("Adiada");
-				Image adiada = new Image(getClass().getResourceAsStream("../imagens/projeto.png"));
+				Image adiada = new Image(getClass().getResourceAsStream("/br/suetham/com/todolist/imagens/projeto.png"));
 				imagvStatus.setImage(adiada);
 			}
 			dpDataRealização.setDisable(true);
