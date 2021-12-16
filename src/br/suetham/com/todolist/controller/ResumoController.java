@@ -11,7 +11,9 @@ import br.suetham.com.todolist.model.StatusTarefa;
 import br.suetham.com.todolist.model.Tarefa;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 public class ResumoController implements Initializable {
 	@FXML
@@ -28,14 +30,25 @@ public class ResumoController implements Initializable {
 
 	private List<Tarefa> tarefas;
 
+    @FXML
+    private Button btEntendido;
+
+    @FXML
+    void btEntendido() {
+    	Stage stage = (Stage) btEntendido.getScene().getWindow();
+    	stage.close();
+    }
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		int contopen = 1;
-		int contadiada = 1;
-		int contconcluida = 1;
-		int contatrasada = 1;
+		int contopen = 0;
+		int contadiada = 0;
+		int contconcluida = 0;
+		int contatrasada = 0;
 		try {
 			tarefas = TarefaIO.readTarefas();
+			 
+			
 			for (Tarefa tarefa : tarefas) {
 
 				if (tarefa.getStatus() == StatusTarefa.ABERTA) {
@@ -60,5 +73,6 @@ public class ResumoController implements Initializable {
 		}
 
 	}
+	
 
 }

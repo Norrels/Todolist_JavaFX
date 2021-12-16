@@ -15,8 +15,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			TarefaIO.createFiles();
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/br/suetham/com/todolist/view/Index.fxml"));
-			Scene scene = new Scene(root,1071,589);
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/br/suetham/com/todolist/view/Telalogin.fxml"));
+			Scene scene = new Scene(root,357,341);
 			scene.getStylesheets().add(getClass().getResource("/br/suetham/com/todolist/view/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Suetham");

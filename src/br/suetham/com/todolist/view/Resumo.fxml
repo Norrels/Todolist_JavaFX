@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="380.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.suetham.com.todolist.controller.ResumoController">
+<AnchorPane prefHeight="353.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.suetham.com.todolist.controller.ResumoController">
    <children>
       <Label layoutX="357.0" layoutY="27.0" prefHeight="81.0" prefWidth="131.0" text="Resumo">
          <font>
@@ -28,7 +29,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Arc layoutX="256.0" layoutY="383.0" length="180.0" radiusX="105.0" radiusY="93.0" stroke="WHITE" strokeMiterLimit="0.0" strokeType="INSIDE" type="ROUND">
+      <Arc layoutX="257.0" layoutY="353.0" length="180.0" radiusX="105.0" radiusY="93.0" stroke="WHITE" strokeMiterLimit="0.0" strokeType="INSIDE" type="ROUND">
          <fill>
             <LinearGradient endX="1.0" endY="0.819047619047619" startX="0.719047619047619" startY="0.11428571428571428">
                <stops>
@@ -51,45 +52,50 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Label layoutX="65.0" layoutY="166.0" text="Estamos quase lá">
+      <Label layoutX="68.0" layoutY="151.0" text="Estamos quase lá">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="86.0" layoutY="198.0" text="ABERTAS">
+      <Label layoutX="87.0" layoutY="190.0" text="ABERTAS">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextArea fx:id="infoAbertas" editable="false" layoutX="61.0" layoutY="243.0" prefHeight="38.0" prefWidth="113.0" />
-      <Label layoutX="256.0" layoutY="166.0" text="Nunca duvidamos" />
-      <Label layoutX="439.0" layoutY="159.0" prefHeight="31.0" prefWidth="137.0" text="Não é atraso é suspense...">
+      <TextArea fx:id="infoAbertas" editable="false" layoutX="66.0" layoutY="215.0" prefHeight="38.0" prefWidth="104.0" />
+      <Label layoutX="270.0" layoutY="151.0" text="Nunca duvidamos" />
+      <Label layoutX="439.0" layoutY="144.0" prefHeight="31.0" prefWidth="137.0" text="Não é atraso é suspense...">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
-      <TextArea fx:id="infoConcluidas" editable="false" layoutX="247.0" layoutY="243.0" prefHeight="38.0" prefWidth="113.0" />
-      <TextArea fx:id="infoAtrasadas" editable="false" layoutX="451.0" layoutY="243.0" prefHeight="38.0" prefWidth="113.0" />
-      <TextArea fx:id="infoAdiadas" editable="false" layoutX="647.0" layoutY="243.0" prefHeight="38.0" prefWidth="113.0" />
-      <Label layoutX="647.0" layoutY="151.0" prefHeight="47.0" prefWidth="113.0" text="Adiar não é desistir, You can do it" textAlignment="CENTER" wrapText="true">
+      <TextArea fx:id="infoConcluidas" editable="false" layoutX="266.0" layoutY="215.0" prefHeight="38.0" prefWidth="104.0" />
+      <TextArea fx:id="infoAtrasadas" editable="false" layoutX="456.0" layoutY="215.0" prefHeight="38.0" prefWidth="104.0" />
+      <TextArea fx:id="infoAdiadas" editable="false" layoutX="653.0" layoutY="215.0" prefHeight="38.0" prefWidth="104.0" />
+      <Label layoutX="648.0" layoutY="136.0" prefHeight="47.0" prefWidth="113.0" text="Adiar não é desistir, You can do it" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="677.0" layoutY="198.0" text="ADIADAS">
+      <Label layoutX="678.0" layoutY="183.0" text="ADIADAS">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="472.0" layoutY="197.0" text="ATRASADAS">
+      <Label layoutX="472.0" layoutY="183.0" text="ATRASADAS">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="266.0" layoutY="197.0" text="CONCLUIDAS">
+      <Label layoutX="280.0" layoutY="183.0" text="CONCLUIDAS">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Button fx:id="btEntendido" layoutX="365.0" layoutY="291.0" mnemonicParsing="false" onAction="#btEntendido" prefHeight="31.0" prefWidth="96.0" style="-fx-background-color: #96d2d9; -fx-border-radius: 20px;" text="Entendido">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

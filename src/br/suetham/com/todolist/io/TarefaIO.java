@@ -20,12 +20,14 @@ public class TarefaIO {
 	private static final String FOLDER =  System.getProperty("user.home")+"/todolist";
 	private static final String FILE_IDS = FOLDER + "/id.csv";
 	private static final String FILE_TAREFA = FOLDER + "/tarefas.csv";
+	private static final String FILE_USER = FOLDER + "/user.csv";
 	
 	public static void createFiles() {
 		try {
 			File pasta = new File(FOLDER);
 			File arqIds = new File(FILE_IDS);
 			File arqTarefas = new File(FILE_TAREFA);
+			File arqUser = new File(FILE_USER);
 			if (!pasta.exists() ) {
 				pasta.mkdir();
 				arqIds.createNewFile();
@@ -42,6 +44,7 @@ public class TarefaIO {
 	public static void insert(Tarefa tarefa) throws FileNotFoundException, IOException {
 	  File arqTarefas = new File(FILE_TAREFA);
 	  File arqIds = new File(FILE_IDS);
+	  File arqUser = new File(FILE_USER);
 	
 	  //ler o ultimo id no FILE_IDS
 	  Scanner leitor = new Scanner(arqIds);
@@ -130,4 +133,20 @@ public class TarefaIO {
 		writer.append("</html>\n");
 		writer.close();
 	}
+	
+	public static void cadastra(String user, String senha) throws FileNotFoundException, IOException {
+		  File arqUser = new File(FILE_USER);
+
+		  Scanner leitor = new Scanner(arqUser);
+		  
+		  leitor.close();
+		  //Grava a tarefa no arquivo
+		  FileWriter writer = new FileWriter(arqUser, true);
+		  writer.append(user);
+		  writer.append(senha);
+		  writer.close();
+		  
+		}
+	
+	
 }
