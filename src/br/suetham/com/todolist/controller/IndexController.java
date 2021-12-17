@@ -1,8 +1,5 @@
 package br.suetham.com.todolist.controller;
 
-
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -115,55 +112,54 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 			 stage.initModality(Modality.APPLICATION_MODAL);
 			 stage.showAndWait();
 			 painelPrincipal.setOpacity(1);
-		 }catch(Exception e) {
+		 } catch(Exception e) {
 			 e.printStackTrace();
 		 }
-	    }
+	}
 	
-	 @FXML
-	    void btAbout() {
-		 try {
-			 AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/br/suetham/com/todolist/view/AbaSobre.fxml"));
-			 Scene scene = new Scene(root, 418, 477);
-			 Stage stage = new Stage();
-			 stage.setScene(scene);
-			 stage.setTitle("Sobre");
-			 //TIRANDO A BORDA DA JANELA
-			 stage.initStyle(StageStyle.UNDECORATED);
-			 painelPrincipal.setOpacity(0.1);
-			 stage.initModality(Modality.APPLICATION_MODAL);
-			 stage.showAndWait();
-			 painelPrincipal.setOpacity(1);
-		 }catch(Exception e) {
-			 e.printStackTrace();
-		 }
-	    }
+	@FXML
+	void btAbout() {
+		try {
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/br/suetham/com/todolist/view/AbaSobre.fxml"));
+			Scene scene = new Scene(root, 418, 477);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.setTitle("Sobre");
+			//TIRANDO A BORDA DA JANELA
+			stage.initStyle(StageStyle.UNDECORATED);
+			painelPrincipal.setOpacity(0.1);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.showAndWait();
+			painelPrincipal.setOpacity(1);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-	    @FXML
-	    void  btExport() {
-	    	FileFilter filter = new FileNameExtensionFilter("Arquivo HTML", "html");
-	    	JFileChooser chooser = new JFileChooser();
-	    	chooser.setFileFilter(filter);
-	    	if(chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-	        		File arqSelecionado = chooser.getSelectedFile();
-	        	arqSelecionado = new File(arqSelecionado+".html");
-	        	try {
-	        		TarefaIO.exportHtml(tarefas, arqSelecionado);
-	        	} catch (IOException e) {
+	@FXML
+	void  btExport() {
+	    FileFilter filter = new FileNameExtensionFilter("Arquivo HTML", "html");
+	    JFileChooser chooser = new JFileChooser();
+	    chooser.setFileFilter(filter);
+	    
+	    if(chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+	       File arqSelecionado = chooser.getSelectedFile();
+	       arqSelecionado = new File(arqSelecionado+".html");
+	       try {
+	        	TarefaIO.exportHtml(tarefas, arqSelecionado);
+	       } catch (IOException e) {
 	        		JOptionPane.showMessageDialog(null, "Ocorreu um erro ao gerar o HTMl");
-	        	}
-	        	
-	    	}
-	    }
+	       }
+	   }
+	}
 	  
-	    @FXML
-	    void btSair() {
-	    	int answer = JOptionPane.showConfirmDialog(null, "Deseja realmente sair");
-	    	if(answer == 0) {
-	    		System.exit(0);
-	    	} 
-	    	
-	    }
+	@FXML
+	void btSair() {
+	    int answer = JOptionPane.showConfirmDialog(null, "Deseja realmente sair");
+	    if(answer == 0) {
+	    System.exit(0);
+	    }  	
+	}
 
 	@FXML
 	void cliqAdiar() {
@@ -248,20 +244,25 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 		if (dpDataRealização.getValue() == null) {
 			JOptionPane.showMessageDialog(null, "Informe a data de realização", "Informe", JOptionPane.ERROR_MESSAGE);
 			dpDataRealização.requestFocus();
+			
 		} else if (tfTitulo.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe um título para tarefa", "Informe", JOptionPane.ERROR_MESSAGE);
 			tfTitulo.requestFocus();
+			
 		} else if (tfsobre.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe sobre a tarefa", "Informe", JOptionPane.ERROR_MESSAGE);
 			tfsobre.requestFocus();
+			
 		} else if (dpDataRealização.getValue().isBefore(LocalDate.now())) {
 			JOptionPane.showMessageDialog(null, "Ops essa data já passou informe uma data valida", "Informe",
 					JOptionPane.ERROR_MESSAGE);
 			dpDataRealização.requestFocus();
+			
 		} else if (tfTitulo.getText().length() >= 40) {
 			JOptionPane.showMessageDialog(null, "O titulo da tarefá deve ser menor que quarenta caracteres", "Informe",
 					JOptionPane.ERROR_MESSAGE);
 			tfTitulo.requestFocus();
+			
 		} else if (tfsobre.getText().length() >= 200) {
 			JOptionPane.showMessageDialog(null, "A tarefa atingiu o limite de caracteres", "Informe",
 					JOptionPane.ERROR_MESSAGE);
@@ -381,6 +382,7 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 	}
 
 	private void carregarTarefas() {
+
 		try {
 			tarefas = TarefaIO.readTarefas();
 			TvTarefa.setItems(FXCollections.observableArrayList(tarefas));
@@ -392,6 +394,7 @@ public class IndexController implements Initializable, ChangeListener<Tarefa> {
 			e.printStackTrace();
 		}
 	}
+	
 	private void contador(){
 		int cont = 1;
 		for (Tarefa tarefa : tarefas) {

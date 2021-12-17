@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-
 import br.suetham.com.todolist.model.StatusTarefa;
 import br.suetham.com.todolist.model.Tarefa;
 
@@ -20,46 +19,43 @@ public class TarefaIO {
 	private static final String FOLDER =  System.getProperty("user.home")+"/todolist";
 	private static final String FILE_IDS = FOLDER + "/id.csv";
 	private static final String FILE_TAREFA = FOLDER + "/tarefas.csv";
-	private static final String FILE_USER = FOLDER + "/user.csv";
+	
 	
 	public static void createFiles() {
 		try {
 			File pasta = new File(FOLDER);
 			File arqIds = new File(FILE_IDS);
 			File arqTarefas = new File(FILE_TAREFA);
-			File arqUser = new File(FILE_USER);
-			if (!pasta.exists() ) {
-				pasta.mkdir();
-				arqIds.createNewFile();
-				arqTarefas.createNewFile();
-				FileWriter writer = new FileWriter(arqIds);
-				writer.write("1");
-				writer.close();
-			}
+			
+		if (!pasta.exists() ) {
+			pasta.mkdir();
+			arqIds.createNewFile();
+			arqTarefas.createNewFile();
+			FileWriter writer = new FileWriter(arqIds);
+			writer.write("1");
+			writer.close();
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void insert(Tarefa tarefa) throws FileNotFoundException, IOException {
-	  File arqTarefas = new File(FILE_TAREFA);
-	  File arqIds = new File(FILE_IDS);
-	  File arqUser = new File(FILE_USER);
-	
-	  //ler o ultimo id no FILE_IDS
-	  Scanner leitor = new Scanner(arqIds);
-	  tarefa.setId(leitor.nextLong());
-	  leitor.close();
-	  //Grava a tarefa no arquivo
-	  FileWriter writer = new FileWriter(arqTarefas, true);
-	  writer.append(tarefa.formatToSave());
-	  writer.close();
-	  //Gravar o proximo ID no arquivo de IDS
-	  long proxId = tarefa.getId() + 1;
-	  writer = new FileWriter(arqIds);
-	  writer.write(proxId+"");
-	  writer.close();
-	  
+		File arqTarefas = new File(FILE_TAREFA);
+		File arqIds = new File(FILE_IDS);
+		//ler o ultimo id no FILE_IDS
+		Scanner leitor = new Scanner(arqIds);
+		tarefa.setId(leitor.nextLong());
+		leitor.close();
+		//Grava a tarefa no arquivo
+		FileWriter writer = new FileWriter(arqTarefas, true);
+		writer.append(tarefa.formatToSave());
+		writer.close();
+		//Gravar o proximo ID no arquivo de IDS
+		long proxId = tarefa.getId() + 1;
+		writer = new FileWriter(arqIds);
+		writer.write(proxId+"");
+		writer.close();
 	}
 	
 	public static List<Tarefa> readTarefas() throws IOException{
@@ -68,6 +64,7 @@ public class TarefaIO {
 		FileReader reader = new FileReader(arqTarefas);
 		BufferedReader buff = new BufferedReader(reader);
 		String linha;
+		
 		while ((linha = buff.readLine())!= null) {
 			// transformando a linha em vetor
 			String[] vetor = linha.split(";");
@@ -85,13 +82,13 @@ public class TarefaIO {
 			int indStatus = Integer.parseInt(vetor[6]);
 			t.setStatus(StatusTarefa.values()[indStatus]);
 			tarefas.add(t);
-			
 		}
-		buff.close();
-		reader.close();
-		Collections.sort(tarefas);
-		 return tarefas;
+			buff.close();
+			reader.close();
+			Collections.sort(tarefas);
+			return tarefas;
 	}
+	
 	public static void AtualizaTarefas(List<Tarefa>tarefas) throws IOException {
 		File arqTarefas = new File(FILE_TAREFA);
 		FileWriter writer = new FileWriter(arqTarefas);
@@ -105,22 +102,7 @@ public class TarefaIO {
 		FileWriter writer = new FileWriter(arquivo);
 		writer.append("<!DOCTYPE html>\n");
 		writer.append("<html>\n");
-		writer.append("<style>\n");
-		writer.append(".container{");
-		writer.append  ("   background-color:  #d6d0ff;");
-		writer.append  ("   width: 80%;\n");
-		writer.append ("    margin: auto;\n");
-		writer.append  ("   box-sizing: border-box;\n");
-		writer.append ("   height: auto;\n");
-         
-         
-		writer.append (" body{\n");
-				writer.append ("      margin: auto;\n");
-						writer.append ("     text-align: center;\n");
-								writer.append ("    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}\n");
-
-								writer.append("</style>\n");
-		
+		writer.append("<body>\n");
 		writer.append("<h1>Lista de Tarefas</h1>\n");
 		writer.append("<ul>\n");
 		for(Tarefa tarefa : lista) {
@@ -132,21 +114,7 @@ public class TarefaIO {
 		writer.append("</body>\n");
 		writer.append("</html>\n");
 		writer.close();
+		}
 	}
 	
-	public static void cadastra(String user, String senha) throws FileNotFoundException, IOException {
-		  File arqUser = new File(FILE_USER);
-
-		  Scanner leitor = new Scanner(arqUser);
-		  
-		  leitor.close();
-		  //Grava a tarefa no arquivo
-		  FileWriter writer = new FileWriter(arqUser, true);
-		  writer.append(user);
-		  writer.append(senha);
-		  writer.close();
-		  
-		}
 	
-	
-}

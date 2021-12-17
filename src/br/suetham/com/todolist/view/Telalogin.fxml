@@ -29,5 +29,7 @@
       <Button fx:id="btCadastre" layoutX="196.0" layoutY="272.0" mnemonicParsing="false" onAction="#cliqCadastre" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: fff;" text="Cadastre-se" textFill="#807eff" />
       <TextField fx:id="tfUser" layoutX="66.0" layoutY="134.0" prefHeight="25.0" prefWidth="233.0" promptText="Insira seu usuário" />
       <PasswordField fx:id="tfSenha" layoutX="66.0" layoutY="211.0" prefHeight="25.0" prefWidth="233.0" promptText="Insira sua senha" />
+      <Label fx:id="lbWrongSenha" layoutX="66.0" layoutY="236.0" text="Senha Incorreta" textFill="RED" visible="false" />
+      <Label fx:id="lbWrongUser" layoutX="68.0" layoutY="162.0" text="Usúario Incorreto" textFill="#f50000" visible="false" />
    </children>
 </AnchorPane>
